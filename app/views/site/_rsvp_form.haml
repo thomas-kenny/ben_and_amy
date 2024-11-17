@@ -15,24 +15,40 @@
               = f.input :name, label: false, required: true, input_html: {class: "block w-full rounded-md text-lg inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}
             .my-8.flex.gap-x-8.text-xl
               .flex.items-center.gap-x-2
-                = f.radio_button :attending, true
+                = f.radio_button :attending, true, id: 'attending'
                 = label :attending, 'Attending', for: 'attending_yes'
               .flex.items-center.gap-x-2
-                = f.radio_button :attending, false
+                = f.radio_button :attending, false, id: 'not-attending'
                 = label :attending, 'Not Attending', for: 'attending_no'
-            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} Please choose a starter
-            .my-4
-              = f.input :starter, label: false, collection: Rsvp.starters.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
+            #food-options
+              %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} Please choose a starter
+              .my-4
+                = f.input :starter, label: false, collection: Rsvp.starters.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
 
-            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} And a main
-            .my-4
-              = f.input :main, label: false, collection: Rsvp.mains.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
-            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "email"} Any other dietary requirements?
-            .my-4
-              = f.input :dietary_requirements, label: false, required: false, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}
-            
+              %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} And a main
+              .my-4
+                = f.input :main, label: false, collection: Rsvp.mains.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
+              %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "email"} Any other dietary requirements?
+              .my-4
+                = f.input :dietary_requirements, label: false, required: false, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}
+              
             .my-4.flex.justify-center
               = f.submit "Submit", class: 'text-xl w-full bg-pink-400 border border-transparent rounded-md shadow-sm py-2 px-4 font-medium text-white hover:opacity-75 sm:ml-6 sm:order-last sm:w-auto hover:cursor-pointer'
         
   .flex.justify-center.py-40
     = image_tag('engagement.jpg', class: 'w-1/2 rounded-2xl')
+
+
+:javascript
+  
+  var notAttending = document.getElementById('not-attending')
+  var attending = document.getElementById('attending')
+  var foodOptions = document.getElementById('food-options')
+
+  notAttending.addEventListener('click', function() {
+    foodOptions.classList.add('hidden')
+  })
+
+  attending.addEventListener('click', function() {
+    foodOptions.classList.remove('hidden')
+  })
