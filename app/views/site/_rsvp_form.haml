@@ -1,0 +1,38 @@
+.relative.z-10.py-24
+  .mx-auto.lg:max-w-4xl.text-center.pb-24.max-w-7xl
+    %h2.mt-2.text-4xl.font-bold.tracking-tight.text-gray-900.sm:text-6xl RSVP
+    %p.mt-6.text-2xl.leading-8.text-gray-600 Please let us know if you can make it by the 1st of March!
+  .mx-auto.flex.max-w-full.lg:max-w-7xl.flex-col.items-center.gap-x-8.gap-y-10.px-6.sm:gap-y-8.lg:px-8.xl:flex-row.xl:items-stretch.lg:bg-white.rounded-lg
+    .-mt-4.w-full.max-w-2xl.xl:-mb-8.xl:flex-none{class: "lg:w-2/5"}
+      .relative.h-full.md:-mx-8.xl:mx-0.xl:aspect-auto
+        = image_tag('party.jpg', class: "absolute inset-0 h-full w-full rounded-2xl bg-gray-800 object-cover shadow-2xl")
+    .w-full.xl:flex-auto.xl:px-8.xl:py-8.p-12
+      .lg:mx-auto.lg:w-full
+        .bg-white.lg:p-16.p-24.shadow.sm:rounded-lg
+          = simple_form_for @rsvp do |f|
+            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "name"} Name
+            .my-8
+              = f.input :name, label: false, required: true, input_html: {class: "block w-full rounded-md text-lg inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}
+            .my-8.flex.gap-x-8.text-xl
+              .flex.items-center.gap-x-2
+                = f.radio_button :attending, true
+                = label :attending, 'Attending', for: 'attending_yes'
+              .flex.items-center.gap-x-2
+                = f.radio_button :attending, false
+                = label :attending, 'Not Attending', for: 'attending_no'
+            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} Please choose a starter
+            .my-4
+              = f.input :starter, label: false, collection: Rsvp.starters.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
+
+            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} And a main
+            .my-4
+              = f.input :main, label: false, collection: Rsvp.mains.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
+            %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "email"} Any other dietary requirements?
+            .my-4
+              = f.input :dietary_requirements, label: false, required: false, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}
+            
+            .my-4.flex.justify-center
+              = f.submit "Submit", class: 'text-xl w-full bg-pink-400 border border-transparent rounded-md shadow-sm py-2 px-4 font-medium text-white hover:opacity-75 sm:ml-6 sm:order-last sm:w-auto hover:cursor-pointer'
+        
+  .flex.justify-center.py-40
+    = image_tag('engagement.jpg', class: 'w-1/2 rounded-2xl')
