@@ -2,7 +2,7 @@
   "name": "ben_and_amy",
   "private": true,
   "engines": {
-    "node": "14.21.33"
+    "node": "14.x"
   },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
