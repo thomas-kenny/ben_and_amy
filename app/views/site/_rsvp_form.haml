@@ -23,7 +23,7 @@
             #food-options
               %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} Please choose a starter
               .my-4
-                = f.input :starter, label: false, collection: Rsvp.starters.map{|category| ["#{category[0].humanize}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
+                = f.input :starter, label: false, collection: Rsvp.starters.map{|category| ["#{(category[0] == 'lentil_soup' ? 'Lentil soup (vegan)' : category[0].humanize)}", "#{category[0]}"]}, input_html: {class: "text-lg block w-full rounded-md inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}, required: true
 
               %label.block.font-medium.leading-6.text-gray-900.text-xl{:for => "starter"} And a main
               .my-4
