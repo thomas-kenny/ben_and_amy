@@ -44,11 +44,17 @@
   var notAttending = document.getElementById('not-attending')
   var attending = document.getElementById('attending')
   var foodOptions = document.getElementById('food-options')
+  var starter = document.getElementById('rsvp_starter')
+  var main = document.getElementById('rsvp_main')
 
   notAttending.addEventListener('click', function() {
     foodOptions.classList.add('hidden')
+    starter.required = false
+    main.required = false
   })
 
   attending.addEventListener('click', function() {
     foodOptions.classList.remove('hidden')
+    starter.required = true
+    main.required = true
   })
